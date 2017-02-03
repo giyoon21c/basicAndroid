@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
         // wire up the button to do stuff
         // .. get the button using findViewBy w/ resource id
         Button btn = (Button) findViewById(R.id.btnDoMagic);
-
         btn.setOnClickListener(new View.OnClickListener() {
+            // .. set what happends when the user clicks
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "This is a magic log msg!");
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // .. set what happends when the user clicks
 
     }
 }
