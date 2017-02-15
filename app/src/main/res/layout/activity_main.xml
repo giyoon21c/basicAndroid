@@ -10,22 +10,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.basicandroid.MainActivity">
 
+    <TextView
+        android:text="@string/interesting_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp" />
+
     <Button
-        android:text="Do The Magic"
+        android:text="@string/do_the_magic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnDoMagic"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp" />
 
-    <TextView
-        android:text="Interesting Message"
+    <Button
+        android:text="@string/launch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnDoMagic"
+        android:id="@+id/launch_button"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="87dp"
-        android:id="@+id/textView"
-        android:textSize="24sp"
-        android:textStyle="normal|bold" />
+        android:layout_marginBottom="123dp" />
 </RelativeLayout>

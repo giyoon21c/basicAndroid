@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">basicAndroid</string>
+    <string name="interesting_message">Interesting Message</string>
+    <string name="do_the_magic">Do The Magic</string>
+    <string name="how_about_now">How about now?</string>
+    <string name="launch">Launch</string>
 </resources>
