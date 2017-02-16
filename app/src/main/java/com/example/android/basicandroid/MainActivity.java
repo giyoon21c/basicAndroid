@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // using strings.xml to define
                 String message = getString(R.string.how_about_now);
-                msg.setText(message + count);
+                msg.setText(message + " count: " + count);
             }
         });
 
@@ -60,9 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 // instead of above method, we can ask secondActivity to give us Intent that
                 // we can use while giving the calling activity's context...
                 // called "static factory method"
-                Intent intent = SecondActivity.makeIntent(MainActivity.this, "Bob", 101);
-                startActivity(intent);
+                // Intent intent = SecondActivity.makeIntent(MainActivity.this, "Bob", 101);
+                // startActivity(intent);
 
+                // using class PetRock
+                PetRock rocky = new PetRock("charlie", 56);
+                Intent intent = SecondActivity.makeIntent(MainActivity.this, rocky);
+                startActivity(intent);
             }
         });
     }
