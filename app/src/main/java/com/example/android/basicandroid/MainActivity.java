@@ -1,5 +1,6 @@
 package com.example.android.basicandroid;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "This is a magic log msg!");
-                Toast.makeText(getApplicationContext(), "It's magic!", Toast.LENGTH_SHORT)
+                Toast.makeText(MainActivity.this, "It's magic!", Toast.LENGTH_SHORT)
                         .show();
                 TextView msg = (TextView) findViewById(R.id.textView);
                 count++;
@@ -49,12 +50,20 @@ public class MainActivity extends AppCompatActivity {
         launchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Launch!", Toast.LENGTH_SHORT)
+                Toast.makeText(MainActivity.this, "Launch!", Toast.LENGTH_SHORT)
                         .show();
+
+                // note the MainActivity.this and SecondActivity.class syntax
+                //Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                //startActivity(intent);
+
+                // instead of above method, we can ask secondActivity to give us Intent that
+                // we can use while giving the calling activity's context...
+                // called "static factory method"
+                Intent intent = SecondActivity.makeIntent(MainActivity.this, "Bob", 101);
+                startActivity(intent);
+
             }
         });
-
-
     }
-
 }
