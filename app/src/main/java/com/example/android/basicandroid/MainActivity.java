@@ -1,5 +1,6 @@
 package com.example.android.basicandroid;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.R.id.message;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "DemoInitialApp";
+    public static final int REQUEST_CODE_FOR_MESSAGE = 1004;
 
     private int count = 0;
 
@@ -40,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         // setup a launch botton from scratch!
         setUpLaunchButton();
+        setupThirdButton();
+
     }
 
     /**
@@ -69,5 +76,36 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    /**
+     * setting up third button and onClickListener
+     */
+    private void setupThirdButton() {
+        Button launch2Button = (Button) findViewById(R.id.button2);
+        launch2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ThirdActivity.makeIntent(MainActivity.this);
+                startActivityForResult(intent, REQUEST_CODE_FOR_MESSAGE);
+            }
+        });
+    }
+
+    // need to override result coming back from ThirdActivity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case REQUEST_CODE_FOR_MESSAGE:
+                if (resultCode == Activity.RESULT_OK) {
+                    // get message and do something with it
+                    //String message = data.getStringExtra("daMessage");
+                    String message = ThirdActivity.getResultMessage(data);
+                    Log.i("MyApp", "Result message is: " + message);
+                } else {
+                    Log.i("MyApp", "Activity cancelled!");
+                }
+        }
+
     }
 }
