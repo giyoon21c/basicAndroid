@@ -2,13 +2,21 @@ package com.example.android.basicandroid;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import static android.R.id.message;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
@@ -18,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_FOR_MESSAGE = 1004;
 
     private int count = 0;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +59,68 @@ public class MainActivity extends AppCompatActivity {
         // setup a launch botton from scratch!
         setUpLaunchButton();
         setupThirdButton();
+        createRadioButtons();
+        setupPrintSelectedButton();
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+
+    private void setupPrintSelectedButton() {
+        Button btn = (Button) findViewById(R.id.find_selected);
+        final int[] numPanels = getResources().getIntArray(R.array.num_solar_panels);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // get the button group and checkedRadioButtonId
+                RadioGroup group = (RadioGroup) findViewById(R.id.radio_group_install_size);
+                int idOfSelected = group.getCheckedRadioButtonId();
+
+                if (idOfSelected != -1) {
+                    RadioButton radioButton = (RadioButton) findViewById(idOfSelected);
+                    String message = radioButton.getText().toString();
+                    Toast.makeText(getApplicationContext(), "Selected button's text is: " +
+                            message, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "No button selected!", Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+        });
+    }
+
+    private void createRadioButtons() {
+        // find the radio group, then add buttons to it
+        RadioGroup group = (RadioGroup) findViewById(R.id.radio_group_install_size);
+
+        int[] numPanels = getResources().getIntArray(R.array.num_solar_panels);
+
+        // create buttons
+        for (int i = 0; i < numPanels.length; i++) {
+            final int numPanel = numPanels[i];
+            RadioButton button = new RadioButton(this);
+            button.setText(getString(R.string.solar_panels, numPanel));
+
+            // TODO: add onclick call backs
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), "You clicked " + numPanel, Toast.LENGTH_SHORT)
+                            .show();
+                }
+            });
+            // TODO: add to radio group
+            group.addView(button);
+        }
+    }
+
+
+
     /**
-     *  setting up setOnClickListener
+     * setting up setOnClickListener
      */
     private void setUpLaunchButton() {
         Button launchButton = (Button) findViewById(R.id.launch_button);
@@ -95,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
     // need to override result coming back from ThirdActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch(requestCode) {
+        switch (requestCode) {
             case REQUEST_CODE_FOR_MESSAGE:
                 if (resultCode == Activity.RESULT_OK) {
                     // get message and do something with it
@@ -107,5 +177,41 @@ public class MainActivity extends AppCompatActivity {
                 }
         }
 
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Main Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 }

@@ -22,29 +22,49 @@
         android:layout_marginTop="23dp" />
 
     <Button
-        android:text="@string/do_the_magic"
+        android:text="Launch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnDoMagic"
-        android:layout_alignTop="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp" />
+        android:id="@+id/button2"
+        android:layout_below="@+id/btnDoMagic"
+        android:layout_toRightOf="@+id/btnDoMagic"
+        android:layout_toEndOf="@+id/btnDoMagic" />
 
     <Button
         android:text="@string/launch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/launch_button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/btnDoMagic"
+        android:layout_toLeftOf="@+id/btnDoMagic"
+        android:layout_toStartOf="@+id/btnDoMagic" />
 
     <Button
-        android:text="Launch2"
+        android:text="@string/do_the_magic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_below="@+id/launch_button"
-        android:layout_alignLeft="@+id/launch_button"
-        android:layout_alignStart="@+id/launch_button"
-        android:layout_marginTop="80dp" />
+        android:id="@+id/btnDoMagic"
+        android:layout_marginTop="40dp"
+        android:layout_alignTop="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radio_group_install_size"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Print Selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="12dp"
+        android:id="@+id/find_selected" />
 </RelativeLayout>
