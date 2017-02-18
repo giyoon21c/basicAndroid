@@ -59,64 +59,13 @@ public class MainActivity extends AppCompatActivity {
         // setup a launch botton from scratch!
         setUpLaunchButton();
         setupThirdButton();
-        createRadioButtons();
-        setupPrintSelectedButton();
+        //createRadioButtons();
+        //setupPrintSelectedButton();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
-
-    private void setupPrintSelectedButton() {
-        Button btn = (Button) findViewById(R.id.find_selected);
-        final int[] numPanels = getResources().getIntArray(R.array.num_solar_panels);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // get the button group and checkedRadioButtonId
-                RadioGroup group = (RadioGroup) findViewById(R.id.radio_group_install_size);
-                int idOfSelected = group.getCheckedRadioButtonId();
-
-                if (idOfSelected != -1) {
-                    RadioButton radioButton = (RadioButton) findViewById(idOfSelected);
-                    String message = radioButton.getText().toString();
-                    Toast.makeText(getApplicationContext(), "Selected button's text is: " +
-                            message, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "No button selected!", Toast.LENGTH_SHORT)
-                            .show();
-                }
-            }
-        });
-    }
-
-    private void createRadioButtons() {
-        // find the radio group, then add buttons to it
-        RadioGroup group = (RadioGroup) findViewById(R.id.radio_group_install_size);
-
-        int[] numPanels = getResources().getIntArray(R.array.num_solar_panels);
-
-        // create buttons
-        for (int i = 0; i < numPanels.length; i++) {
-            final int numPanel = numPanels[i];
-            RadioButton button = new RadioButton(this);
-            button.setText(getString(R.string.solar_panels, numPanel));
-
-            // TODO: add onclick call backs
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "You clicked " + numPanel, Toast.LENGTH_SHORT)
-                            .show();
-                }
-            });
-            // TODO: add to radio group
-            group.addView(button);
-        }
-    }
-
 
 
     /**
