@@ -22,7 +22,7 @@
         android:layout_marginTop="23dp" />
 
     <Button
-        android:text="Launch2"
+        android:text="@string/third_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
@@ -31,7 +31,7 @@
         android:layout_toEndOf="@+id/btnDoMagic" />
 
     <Button
-        android:text="@string/launch"
+        android:text="@string/second_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/launch_button"
@@ -48,23 +48,13 @@
         android:layout_alignTop="@+id/textView"
         android:layout_centerHorizontal="true" />
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/radio_group_install_size"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <Button
-        android:text="Print Selected"
+        android:text="@string/options_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="12dp"
-        android:id="@+id/find_selected" />
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/launch_button"
+        android:layout_alignStart="@+id/launch_button"
+        android:id="@+id/option_button" />
+
 </RelativeLayout>

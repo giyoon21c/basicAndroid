@@ -1,5 +1,8 @@
 package com.example.android.basicandroid;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +20,11 @@ public class OptionsActivity extends AppCompatActivity {
 
         createRadioButtons();
         setupPrintSelectedButton();
+    }
+
+    public static Intent makeIntent(Context context) {
+        Intent intent = new Intent(context, OptionsActivity.class);
+        return intent;
     }
 
     private void createRadioButtons() {

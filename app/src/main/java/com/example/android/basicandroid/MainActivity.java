@@ -59,12 +59,25 @@ public class MainActivity extends AppCompatActivity {
         // setup a launch botton from scratch!
         setUpLaunchButton();
         setupThirdButton();
-        //createRadioButtons();
-        //setupPrintSelectedButton();
+        setupOptionsButton();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+
+    private void setupOptionsButton() {
+        Button optionButton = (Button) findViewById(R.id.option_button);
+        optionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Option Launch!", Toast.LENGTH_SHORT)
+                        .show();
+                Intent intent = OptionsActivity.makeIntent(MainActivity.this);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -125,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("MyApp", "Activity cancelled!");
                 }
         }
-
     }
 
     /**

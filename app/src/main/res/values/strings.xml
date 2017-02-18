@@ -4,5 +4,8 @@
     <string name="do_the_magic">Do The Magic</string>
     <string name="how_about_now">How about now?</string>
     <string name="launch">Launch</string>
+    <string name="second_activity">Second Act</string>
+    <string name="third_activity">Third Act</string>
+    <string name="options_activity">Option Act</string>
     <string name="solar_panels">"%1$d solar panels"</string>
 </resources>
